@@ -1,4 +1,3 @@
-import { Time } from "@angular/common";
 import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { bookedData } from "./data.model";

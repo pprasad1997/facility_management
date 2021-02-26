@@ -17,14 +17,14 @@ export class AppComponent implements OnInit {
   constructor(private appService: AppService) {}
 
   ngOnInit(){
-    // this.bookedData = this.appService.getData();
+    this.bookedData = this.appService.getData();
     this.appService.bookedUpdated.subscribe(data => {
       this.bookedData = data;
     });
   }
 
   onBooking(form: NgForm){
-    console.log(form);
+    // console.log(form);
     this.appService.addData(form.value.facility, form.value.fromTime, form.value.toTime);
 
   }
