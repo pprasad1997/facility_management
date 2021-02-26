@@ -1,0 +1,48 @@
+<app-header></app-header>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <form (ngSubmit)="onBooking(form)" #form="ngForm">
+        <div class="form-group">
+          <label for="facility">Facility</label>
+          <select class="form-control" id="facility" name="facility" [ngModel]="'tennis'" required>
+            <option value="tennis">Tennis Court</option>
+            <option value="club">Club House</option>
+          </select>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <label for="fromTime">From Time</label>
+          <input class="form-control" type="datetime-local" id="fromTime" name="fromTime" ngModel required>
+        </div>
+        <div class="form-group col-sm-6">
+          <label for="toTime">To Time</label>
+          <input class="form-control" type="datetime-local" id="toTime" name="toTime" ngModel required>
+        </div>
+        <div class="">
+          <button class="btn btn-primary" [disabled]="form.invalid"> Book </button>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-6">
+      <h4>Boked Data</h4>
+      <p *ngIf="bookedData.length == 0">No Data yet</p>
+      <table class="table table-bordered table-hover" *ngIf="bookedData.length > 0">
+        <thead>
+          <th>S.No</th>
+          <th>Facility</th>
+          <th>Date - Time</th>
+          <th>Status</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bookeditem of bookedData; let i = index ">
+            <td> {{ i+1 }} </td>
+            <td>{{ bookeditem.facility }}</td>
+            <td>{{ bookeditem.fromTimeShow }} - {{ bookeditem.toTimeShow }}</td>
+            <td>{{ bookeditem.status ? 'Booked, Rs'+ bookeditem.cost : 'Booking Failed ! Already Booked' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
